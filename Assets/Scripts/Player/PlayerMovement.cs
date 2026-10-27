@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public int facing = 1;   // 1 = right, -1 = left
 
     Rigidbody2D rb;
-    BoxCollider2D col;
+    CapsuleCollider2D col;
     float moveInput;
     bool jumpPressed;
     float speedMultiplier = 1f;
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<BoxCollider2D>();
+        col = GetComponent<CapsuleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         if (sr != null) originalColor = sr.color;
     }

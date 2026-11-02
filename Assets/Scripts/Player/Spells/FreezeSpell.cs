@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.Rendering.ReloadAttribute;
 
 public class FreezeSpell : MonoBehaviour, ISpell
 {
@@ -27,6 +28,9 @@ public class FreezeSpell : MonoBehaviour, ISpell
         PlayerMovement target = other.GetComponent<PlayerMovement>();
         if (target != null)
             target.ApplySlow(slowMultiplier, slowDuration);
+
+        if (Package.Instance.holder == target)
+            Package.Instance.Drop();
 
         Destroy(gameObject);   // vanish on hitting a player or a wall
     }

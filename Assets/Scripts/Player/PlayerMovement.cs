@@ -70,4 +70,16 @@ public class PlayerMovement : MonoBehaviour
         slowEndTime = Time.time + duration;
         if (sr != null) sr.color = Color.Lerp(originalColor, new Color(0.5f, 0.8f, 1f), 0.4f);  // icy blue tint
     }
+    public void Teleport(Vector2 pos)
+    {
+        transform.position = pos;
+        rb.position = pos;
+    }
+
+    public void ResetState()
+    {
+        rb.linearVelocity = Vector2.zero;
+        speedMultiplier = 1f;                       // clears any freeze slow
+        if (sr != null) sr.color = originalColor;   // clears the tint
+    }
 }

@@ -45,7 +45,13 @@ public class CameraFollow : MonoBehaviour
                 Vector2 p = holder.transform.position;
                 holder.Teleport(new Vector2(p.x + dir * entryInset, p.y));
 
-                OnScreenChanged(holder, dir);
+                // If the other player crossed together with the holder, they die and respawn ahead
+                PlayerMovement other = holder == player1 ? player2 : player1;
+                if (IsOnScreen(other))
+                {
+                    if (respawnRoutine != null) StopCoroutine(respawnRoutine);
+                    respawnRoutine = StartCoroutine(RespawnPushed(other, holder, dir));
+                }
             }
         }
 
@@ -58,24 +64,15 @@ public class CameraFollow : MonoBehaviour
         return Mathf.Abs(p.transform.position.x - TargetX) <= ScreenWidth / 2f;
     }
 
-    void OnScreenChanged(PlayerMovement holder, int dir)
+    IEnumerator RespawnPushed(PlayerMovement other, PlayerMovement holder, int dir)
     {
-        PlayerMovement other = holder == player1 ? player2 : player1;
-
-        if (IsOnScreen(other)) return;   // they kept up, no respawn needed
-
-        if (respawnRoutine != null) StopCoroutine(respawnRoutine);
-        respawnRoutine = StartCoroutine(RespawnAhead(other, holder, dir));
-    }
-
-    IEnumerator RespawnAhead(PlayerMovement other, PlayerMovement holder, int dir)
-    {
+        other.gameObject.SetActive(false);   // they die when shoved across
         yield return new WaitForSeconds(respawnDelay);
 
-        if (IsOnScreen(other)) yield break;   // they caught up during the wait
-
         float x = TargetX + dir * (ScreenWidth / 2f - respawnEdgeInset);   // far edge, ahead of the holder
+        other.gameObject.SetActive(true);
         other.Teleport(new Vector2(x, holder.transform.position.y));
         other.ResetState();
     }
+
 }

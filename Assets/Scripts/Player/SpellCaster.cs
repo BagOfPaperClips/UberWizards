@@ -33,6 +33,11 @@ public class SpellCaster : MonoBehaviour
     {
         movement = GetComponent<PlayerMovement>();
     }
+    void Start()
+    {
+        foreach (SpellSlot spell in spells)
+            spell.nextCastTime = 0f;   // every spell is ready at the start
+    }
 
     void Update()
     {
@@ -51,6 +56,8 @@ public class SpellCaster : MonoBehaviour
         spell.nextCastTime = Time.time + spell.cooldown;
 
         int facing = movement != null ? movement.facing : 1;
+
+
         Vector2 direction = new Vector2(facing, 0f);
 
         Debug.Log($"{name} cast {spell.spellName} ({(facing == 1 ? "right" : "left")})");

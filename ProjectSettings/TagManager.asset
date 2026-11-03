@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - L1
+  - L2
+  - L3
+  - L4
+  - base
+  - R1
+  - R2
+  - R3
+  - R4
+  - W1
   layers:
   - Default
   - TransparentFX
@@ -13,15 +23,15 @@ TagManager:
   - UI
   - Player1
   - Player2
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - L1
+  - L2
+  - L3
+  - L4
+  - R1
+  - R2
+  - R3
+  - R4
+  - base
   - 
   - 
   - 

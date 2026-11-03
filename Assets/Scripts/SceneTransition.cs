@@ -4,7 +4,10 @@ public class SceneTransition : MonoBehaviour
 {
     [SerializeField] GameObject settings;
     [SerializeField] GameObject credits;
-
+    public void TitleScreen()
+    {
+        SceneManager.LoadScene("Title");
+    }
     private void Start()
     {
         settings.SetActive(false);

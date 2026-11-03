@@ -6,6 +6,8 @@ public class GoalZone : MonoBehaviour
     public PlayerMovement onlyFor;   // leave empty = either player can win here
     PlayerMovement winner;
 
+    [SerializeField] GameObject winScreen;
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (winner != null) return;
@@ -31,13 +33,7 @@ public class GoalZone : MonoBehaviour
     void OnGUI()
     {
         if (winner == null) return;
-
-        GUIStyle style = new GUIStyle(GUI.skin.label);
-        style.fontSize = 48;
-        style.alignment = TextAnchor.MiddleCenter;
-        style.normal.textColor = Color.white;
-
-        GUI.Label(new Rect(0, 0, Screen.width, Screen.height),
-                  $"{winner.name} wins!\nPress R to restart", style);
+        winScreen.SetActive(true);
+        Time.timeScale = 1f;   // freeze the game
     }
 }

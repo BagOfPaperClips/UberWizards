@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// Put this on your spell prefabs (e.g. a fireball script) to receive the direction
 public interface ISpell
 {
     void Init(Vector2 direction, GameObject caster);
@@ -50,7 +49,9 @@ public class SpellCaster : MonoBehaviour
 
     void TryCast(int index)
     {
-        SpellSlot spell = spells[index];
+        if (Package.Instance != null && Package.Instance.holder == movement) return;
+
+    SpellSlot spell = spells[index];
 
         if (Time.time < spell.nextCastTime) return;
         spell.nextCastTime = Time.time + spell.cooldown;

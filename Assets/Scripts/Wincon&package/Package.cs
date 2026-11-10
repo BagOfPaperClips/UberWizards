@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Package : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class Package : MonoBehaviour
         transform.SetParent(player.transform);
         transform.localPosition = carryOffset;
     }
+
 
     public void Drop()
     {

@@ -288,7 +288,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   offscreenMargin: 0.5
   deathDelay: 0.2
-  respawnDelay: 1
+  respawnDelay: 0.6
   respawnEdgeInset: 1.5
 --- !u!4 &54278646
 Transform:
@@ -1227,10 +1227,14 @@ MonoBehaviour:
   package: {fileID: 574762667}
   player1: {fileID: 591820604}
   player2: {fileID: 648161300}
-  slideTime: 0.35
+  boundsParent: {fileID: 954773501}
+  followSmoothTime: 0.15
   entryInset: 1
+  backEdgeMargin: 0.5
   respawnDelay: 1
   respawnEdgeInset: 1.5
+  fadeTime: 0.2
+  blackTime: 0.3
 --- !u!1 &533630239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,6 +1735,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   facing: 1
+  objectiveDirection: 1
 --- !u!114 &591820605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2040,6 +2045,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   facing: -1
+  objectiveDirection: -1
 --- !u!50 &648161302
 Rigidbody2D:
   serializedVersion: 5

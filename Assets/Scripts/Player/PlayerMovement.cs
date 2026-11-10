@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     float slowEndTime;
     SpriteRenderer sr;
     Color originalColor;
+    public int objectiveDirection = 1;
 
     void Awake()
     {

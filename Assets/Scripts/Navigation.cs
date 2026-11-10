@@ -25,15 +25,9 @@ public class Navigation : MonoBehaviour
         winScreen.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("W1"))
+        if (collision.CompareTag("W1") && collision.CompareTag("Package"))
         {
             winScreen.SetActive(true);
         }

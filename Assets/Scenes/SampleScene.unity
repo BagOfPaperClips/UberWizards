@@ -290,6 +290,7 @@ MonoBehaviour:
   deathDelay: 0.2
   respawnDelay: 0.6
   respawnEdgeInset: 1.5
+  cameraFollow: {fileID: 519420033}
 --- !u!4 &54278646
 Transform:
   m_ObjectHideFlags: 0
@@ -1228,6 +1229,7 @@ MonoBehaviour:
   player1: {fileID: 591820604}
   player2: {fileID: 648161300}
   boundsParent: {fileID: 954773501}
+  bannerTime: 2
   followSmoothTime: 0.15
   entryInset: 1
   backEdgeMargin: 0.5

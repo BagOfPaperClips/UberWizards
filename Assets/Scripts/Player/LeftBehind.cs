@@ -12,6 +12,7 @@ public class LeftBehind : MonoBehaviour
     public float deathDelay = 0.5f;       // must be off-screen this long before dying
     public float respawnDelay = 1f;
     public float respawnEdgeInset = 1.5f; // how far from the screen edge they reappear
+    public CameraFollow cameraFollow;
 
     float offscreenTimer;
     bool respawning;
@@ -55,7 +56,12 @@ public class LeftBehind : MonoBehaviour
         offscreenTimer = 0f;
 
         victim.gameObject.SetActive(false);   // "dead"
+       // On the last screen they stay dead. `respawning` stays true so this rule stops running.
+        if (cameraFollow != null && cameraFollow.OnLastScreen(holder))
+            yield break;
         yield return new WaitForSeconds(respawnDelay);
+        if (cameraFollow != null && cameraFollow.OnLastScreen(holder))
+            yield break;   // the holder reached the last screen while we were waiting
 
         float half = cam.orthographicSize * cam.aspect;
         float x = cam.transform.position.x + side * (half - respawnEdgeInset);
@@ -64,6 +70,7 @@ public class LeftBehind : MonoBehaviour
         victim.gameObject.SetActive(true);
         victim.Teleport(new Vector2(x, y));
         victim.ResetState();
+        RespawnEffect.Spawn(victim.gameObject);
 
         respawning = false;
     }

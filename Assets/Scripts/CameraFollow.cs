@@ -9,6 +9,10 @@ public class CameraFollow : MonoBehaviour
     public PlayerMovement player2;
     public Transform boundsParent;        // drag the "Bounds" object here
 
+    public float bannerTime = 2f;   // how long "Last screen!" stays up
+    string banner;
+    float bannerUntil;
+
     public float followSmoothTime = 0.15f;
     public float entryInset = 1.5f;       // how far inside the new box the holder appears
     public float backEdgeMargin = 0.5f;   // how close to the back edge the holder can get
@@ -81,6 +85,17 @@ public class CameraFollow : MonoBehaviour
         transform.position = new Vector3(x, startY, transform.position.z);
     }
 
+    int ScreensLeft(PlayerMovement holder)
+    {
+        int lastIndex = holder.objectiveDirection == 1 ? sections.Count - 1 : 0;
+        return Mathf.Abs(lastIndex - index);
+    }
+
+    public bool OnLastScreen(PlayerMovement holder)
+    {
+        return ScreensLeft(holder) == 0;
+    }
+
     float FollowTarget(PlayerMovement holder)
     {
         Bounds cur = sections[index].bounds;
@@ -132,27 +147,65 @@ public class CameraFollow : MonoBehaviour
         Time.timeScale = 1f;
         transitioning = false;
 
+        int left = ScreensLeft(holder);
+        if (left == 0 && respawnRoutine != null)
+        {
+            StopCoroutine(respawnRoutine);   // cancel any respawn still counting down
+            respawnRoutine = null;
+        }
+        if (left == 1)
+        {
+            banner = "Last screen!";
+            bannerUntil = Time.unscaledTime + bannerTime;
+        }
+
         if (pushed)
         {
             if (respawnRoutine != null) StopCoroutine(respawnRoutine);
-            respawnRoutine = StartCoroutine(RespawnPushed(other, holder, dir));
+            respawnRoutine = StartCoroutine(RespawnPushed(other, holder, dir, left != 0));
         }
     }
     void OnGUI()
     {
-        if (fade <= 0f) return;
-        GUI.color = new Color(0f, 0f, 0f, fade);
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
+        if (fade > 0f)
+        {
+            GUI.color = new Color(0f, 0f, 0f, fade);
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
+        }
+
+        if (Time.unscaledTime < bannerUntil)
+        {
+            float timeLeft = bannerUntil - Time.unscaledTime;
+            float shake = 10f * Mathf.Clamp01(timeLeft / bannerTime);   // shakes, then settles
+            Vector2 off = new Vector2(Random.Range(-shake, shake), Random.Range(-shake, shake));
+
+            GUIStyle style = new GUIStyle(GUI.skin.label);
+            style.fontSize = (int)(Screen.height * 0.15f);   // scales with the screen
+            style.fontStyle = FontStyle.Bold;
+            style.alignment = TextAnchor.MiddleCenter;
+
+            Rect r = new Rect(off.x, off.y, Screen.width, Screen.height);
+
+            style.normal.textColor = Color.black;   // drop shadow
+            GUI.Label(new Rect(r.x + 4, r.y + 4, r.width, r.height), banner, style);
+
+            style.normal.textColor = Color.yellow;
+            GUI.Label(r, banner, style);
+        }
     }
 
-    IEnumerator RespawnPushed(PlayerMovement other, PlayerMovement holder, int dir)
+    IEnumerator RespawnPushed(PlayerMovement other, PlayerMovement holder, int dir, bool respawn)
     {
         other.gameObject.SetActive(false);
+        if (!respawn) yield break;   // last screen: they stay dead
+
         yield return new WaitForSeconds(respawnDelay);
+        if (OnLastScreen(holder)) yield break;
 
         float x = transform.position.x + dir * (HalfView - respawnEdgeInset);
         other.gameObject.SetActive(true);
         other.Teleport(new Vector2(x, holder.transform.position.y));
         other.ResetState();
+        RespawnEffect.Spawn(other.gameObject);
     }
 }

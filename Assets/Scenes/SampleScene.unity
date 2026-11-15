@@ -286,7 +286,7 @@ MonoBehaviour:
   player1: {fileID: 591820604}
   player2: {fileID: 648161300}
   cam: {fileID: 0}
-  offscreenMargin: 0.5
+  offscreenMargin: 0.2
   deathDelay: 0.2
   respawnDelay: 0.6
   respawnEdgeInset: 1.5

@@ -96,13 +96,19 @@ public class CameraFollow : MonoBehaviour
         return ScreensLeft(holder) == 0;
     }
 
-    float FollowTarget(PlayerMovement holder)
+    float FollowTarget(PlayerMovement holder, bool holderOnly = false)
     {
+        float targetX = holder.transform.position.x;
+
+        PlayerMovement other = holder == player1 ? player2 : player1;
+        if (!holderOnly && other != null && other.gameObject.activeInHierarchy)
+            targetX = (holder.transform.position.x + other.transform.position.x) * 0.5f;
+
         Bounds cur = sections[index].bounds;
         float minX = cur.min.x + HalfView;
         float maxX = cur.max.x - HalfView;
         if (minX > maxX) return cur.center.x;   // box narrower than the camera
-        return Mathf.Clamp(holder.transform.position.x, minX, maxX);
+        return Mathf.Clamp(targetX, minX, maxX);
     }
 
     IEnumerator ChangeSection(PlayerMovement holder, int dir, Bounds oldBounds)
@@ -127,7 +133,7 @@ public class CameraFollow : MonoBehaviour
         holder.ResetState();
 
         velocityX = 0f;
-        transform.position = new Vector3(FollowTarget(holder), startY, transform.position.z);
+        transform.position = new Vector3(FollowTarget(holder, true), startY, transform.position.z);
 
         // Was the other player shoved across the same edge?
         PlayerMovement other = holder == player1 ? player2 : player1;

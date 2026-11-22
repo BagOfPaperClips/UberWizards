@@ -17,6 +17,7 @@ public class LeftBehind : MonoBehaviour
     float offscreenTimer;
     bool respawning;
 
+
     void Start()
     {
         if (cam == null) cam = Camera.main;
@@ -40,7 +41,7 @@ public class LeftBehind : MonoBehaviour
             if (offscreenTimer >= deathDelay)
             {
                 // Left behind on the left means the holder is heading right, so respawn on the right
-                int side = dx < 0 ? 1 : -1;
+                int side = holder.objectiveDirection;
                 StartCoroutine(Die(other, holder, side));
             }
         }

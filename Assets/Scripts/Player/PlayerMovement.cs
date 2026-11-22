@@ -27,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
+        PhysicsMaterial2D slick = new PhysicsMaterial2D("PlayerSlick");
+        slick.friction = 0f;
+        slick.bounciness = 0f;
+        col.sharedMaterial = slick;
         sr = GetComponent<SpriteRenderer>();
         if (sr != null) originalColor = sr.color;
     }
@@ -82,5 +86,6 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         speedMultiplier = 1f;                       // clears any freeze slow
         if (sr != null) sr.color = originalColor;   // clears the tint
+        facing = objectiveDirection;
     }
 }

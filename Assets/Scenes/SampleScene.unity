@@ -1846,6 +1846,8 @@ MonoBehaviour:
   pickupDelay: 1
   dropToss: 4
   holder: {fileID: 0}
+  stealCooldown: 1.5
+  stealDistance: 0.05
 --- !u!50 &574762668
 Rigidbody2D:
   serializedVersion: 5
@@ -2060,6 +2062,7 @@ MonoBehaviour:
     m_Bits: 8
   facing: 1
   objectiveDirection: 1
+  carrySpeedMultiplier: 0.75
 --- !u!114 &591820605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2081,13 +2084,13 @@ MonoBehaviour:
     nextCastTime: 4
   - spellName: Spell 2
     key: 50
-    cooldown: 4
-    prefab: {fileID: 0}
+    cooldown: 6
+    prefab: {fileID: 3527738473384433443, guid: aba32b1c4adc94c4ebe27cd5306dea87, type: 3}
     nextCastTime: 4
   - spellName: Spell 3
     key: 51
-    cooldown: 4
-    prefab: {fileID: 0}
+    cooldown: 5
+    prefab: {fileID: 7820112239303267353, guid: af5b042f75c96b84fbac853a00ff1950, type: 3}
     nextCastTime: 4
   - spellName: Spell 4
     key: 52
@@ -2283,6 +2286,7 @@ MonoBehaviour:
     m_Bits: 8
   facing: -1
   objectiveDirection: -1
+  carrySpeedMultiplier: 0.75
 --- !u!50 &648161302
 Rigidbody2D:
   serializedVersion: 5
@@ -2401,13 +2405,13 @@ MonoBehaviour:
     nextCastTime: 4
   - spellName: Spell 2
     key: 56
-    cooldown: 4
-    prefab: {fileID: 0}
+    cooldown: 6
+    prefab: {fileID: 3527738473384433443, guid: aba32b1c4adc94c4ebe27cd5306dea87, type: 3}
     nextCastTime: 4
   - spellName: Spell 3
     key: 57
-    cooldown: 4
-    prefab: {fileID: 0}
+    cooldown: 5
+    prefab: {fileID: 7820112239303267353, guid: af5b042f75c96b84fbac853a00ff1950, type: 3}
     nextCastTime: 4
   - spellName: Spell 4
     key: 48

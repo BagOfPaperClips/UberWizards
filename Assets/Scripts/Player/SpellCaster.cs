@@ -49,9 +49,10 @@ public class SpellCaster : MonoBehaviour
 
     void TryCast(int index)
     {
-        if (Package.Instance != null && Package.Instance.holder == movement) return;
+        // for spell casting with package
+        //if (Package.Instance != null && Package.Instance.holder == movement) return;
 
-    SpellSlot spell = spells[index];
+        SpellSlot spell = spells[index];
 
         if (Time.time < spell.nextCastTime) return;
         spell.nextCastTime = Time.time + spell.cooldown;

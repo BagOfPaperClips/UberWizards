@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 600598948067551326}
   - component: {fileID: -8182457501883657185}
   - component: {fileID: 3715259737553821356}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FreezeSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683cd03574dac6b4eb4ec41bd47d1268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 13
   slowMultiplier: 0.4
   slowDuration: 3
   lifetime: 3

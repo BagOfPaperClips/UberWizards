@@ -32,18 +32,23 @@ public class FreezeSpell : MonoBehaviour, ISpell
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == caster) return;   // don't hit yourself
+        if (other.gameObject == caster) return;
 
+        // Fly through the package and through invisible triggers (goal zones, bounds boxes)
+        if (other.GetComponentInParent<Package>() != null) return;
         PlayerMovement target = other.GetComponent<PlayerMovement>();
+        if (target == null && other.isTrigger) return;
+
         if (target != null)
         {
             target.ApplySlow(slowMultiplier, slowDuration);
             PlaySound(hitSound);
+
+            //for package drop on freeze
+/*            if (Package.Instance != null && Package.Instance.holder == target)
+                Package.Instance.Drop();*/
         }
 
-        if (Package.Instance.holder == target)
-            Package.Instance.Drop();
-
-        Destroy(gameObject);   // vanish on hitting a player or a wall
+        Destroy(gameObject);   // vanish on a player, wall or the ground
     }
 }

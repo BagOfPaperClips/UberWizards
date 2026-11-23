@@ -14,6 +14,12 @@ public class Package : MonoBehaviour
     PlayerMovement lastHolder;
     float lastHolderBlockedUntil;
 
+    public float stealCooldown = 1.5f;    // after any grab, nobody can steal it for this long
+    public float stealDistance = 0.05f;   // how close the players' colliders must be to count as touching
+
+    PlayerMovement[] players;
+    float stealBlockedUntil;
+
     void Awake()
     {
         Instance = this;
@@ -26,6 +32,27 @@ public class Package : MonoBehaviour
                 foreach (Collider2D c in GetComponents<Collider2D>())
                     if (!c.isTrigger)
                         Physics2D.IgnoreCollision(c, pc);
+
+        players = FindObjectsByType<PlayerMovement>(FindObjectsSortMode.None);
+    }
+
+    void Update()
+    {
+        if (holder == null || Time.time < stealBlockedUntil) return;
+
+        Collider2D holderCol = holder.GetComponent<Collider2D>();
+
+        foreach (PlayerMovement p in players)
+        {
+            if (p == holder || !p.gameObject.activeInHierarchy) continue;
+
+            Collider2D otherCol = p.GetComponent<Collider2D>();
+            if (holderCol.Distance(otherCol).distance <= stealDistance)
+            {
+                PickUp(p);   // takes it straight off the other player
+                break;
+            }
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -46,6 +73,20 @@ public class Package : MonoBehaviour
         rb.simulated = false;   // no physics while carried
         transform.SetParent(player.transform);
         transform.localPosition = carryOffset;
+        stealBlockedUntil = Time.time + stealCooldown;
+    }
+
+    public void BlastToward(Vector2 target, float flightTime)
+    {
+        if (holder != null) Drop();   // knock it loose first
+
+        Vector2 start = transform.position;
+        float g = Physics2D.gravity.y * rb.gravityScale;   // gravity acting on the package (negative)
+
+        // Pick a velocity that lands the package on the target after flightTime seconds
+        float vx = (target.x - start.x) / flightTime;
+        float vy = (target.y - start.y - 0.5f * g * flightTime * flightTime) / flightTime;
+        rb.linearVelocity = new Vector2(vx, vy);
     }
 
 

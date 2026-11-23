@@ -21,7 +21,12 @@ public class PlayerMovement : MonoBehaviour
     float slowEndTime;
     SpriteRenderer sr;
     Color originalColor;
+
     public int objectiveDirection = 1;
+    public float carrySpeedMultiplier = 0.75f;   // 0.75 = 25% slower while holding the package
+
+    float boostMultiplier = 1f;
+    float boostEndTime;
 
     void Awake()
     {
@@ -37,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (boostMultiplier != 1f && Time.time >= boostEndTime)
+            boostMultiplier = 1f;
+
         if (speedMultiplier != 1f && Time.time >= slowEndTime)
         {
             speedMultiplier = 1f;
@@ -55,13 +63,19 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed * speedMultiplier, rb.linearVelocity.y);
+        float carry = (Package.Instance != null && Package.Instance.holder == this) ? carrySpeedMultiplier : 1f;
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed * speedMultiplier * carry * boostMultiplier, rb.linearVelocity.y);
 
         if (jumpPressed && IsGrounded())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
         jumpPressed = false;
+    }
+    public void ApplyBoost(float multiplier, float duration)
+    {
+        boostMultiplier = multiplier;
+        boostEndTime = Time.time + duration;
     }
 
     bool IsGrounded()
@@ -83,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetState()
     {
+        boostMultiplier = 1f;
         rb.linearVelocity = Vector2.zero;
         speedMultiplier = 1f;                       // clears any freeze slow
         if (sr != null) sr.color = originalColor;   // clears the tint

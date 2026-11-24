@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode rightKey = KeyCode.D;
     public KeyCode jumpKey = KeyCode.W;
 
+
     [Header("Movement")]
     public float moveSpeed = 6f;
     public float jumpForce = 12f;
@@ -51,8 +52,12 @@ public class PlayerMovement : MonoBehaviour
             if (sr != null) sr.color = originalColor;   // slow wore off, back to normal color
         }
         moveInput = 0f;
+
         if (Input.GetKey(leftKey)) moveInput -= 1f;
         if (Input.GetKey(rightKey)) moveInput += 1f;
+        //if (Aurdino.newYaw < -4) moveInput -= 1f;
+        //if (Aurdino.newYaw > 4) moveInput += 1f;
+
 
         if (Input.GetKeyDown(jumpKey))
             jumpPressed = true;

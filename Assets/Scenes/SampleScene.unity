@@ -284,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   package: {fileID: 574762667}
   player1: {fileID: 591820604}
-  player2: {fileID: 648161300}
+  player2: {fileID: 0}
   cam: {fileID: 0}
   offscreenMargin: 0.2
   deathDelay: 0.2
@@ -2187,7 +2187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   package: {fileID: 574762667}
   player1: {fileID: 591820604}
-  player2: {fileID: 648161300}
+  player2: {fileID: 0}
   boundsParent: {fileID: 954773501}
   bannerTime: 2
   followSmoothTime: 0.15
@@ -2837,6 +2837,7 @@ MonoBehaviour:
   wiz: {fileID: 591820599}
   rb: {fileID: 591820601}
   moveSpeed: 6
+  moveDir: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2933,7 +2934,7 @@ GameObject:
   - component: {fileID: 648161303}
   - component: {fileID: 648161302}
   - component: {fileID: 648161306}
-  - component: {fileID: 648161300}
+  - component: {fileID: 648161308}
   - component: {fileID: 648161305}
   - component: {fileID: 648161307}
   m_Layer: 7
@@ -2943,29 +2944,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &648161300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 648161299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a89761d097de6274da928572c62e05e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftKey: 276
-  rightKey: 275
-  jumpKey: 273
-  moveSpeed: 5
-  jumpForce: 12
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  facing: -1
-  objectiveDirection: -1
-  carrySpeedMultiplier: 0.75
 --- !u!50 &648161302
 Rigidbody2D:
   serializedVersion: 5
@@ -3158,6 +3136,29 @@ MonoBehaviour:
   w1: {fileID: 736915158}
   w2: {fileID: 1359058045}
   winScreen: {fileID: 242995848}
+--- !u!114 &648161308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648161299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6a7fa9370d4d745b5bd8694179cfc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftKey: 276
+  rightKey: 275
+  jumpKey: 273
+  moveSpeed: 6
+  jumpForce: 12
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  facing: 1
+  objectiveDirection: 1
+  carrySpeedMultiplier: 0.75
 --- !u!1 &657573465
 GameObject:
   m_ObjectHideFlags: 0
@@ -3527,7 +3528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a222db927ae4ba4f9460d0c0647d8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyFor: {fileID: 648161300}
+  onlyFor: {fileID: 0}
   winScreen: {fileID: 242995848}
 --- !u!61 &736915162
 BoxCollider2D:

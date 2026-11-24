@@ -7,7 +7,7 @@ public class WandTest1 : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     public float moveSpeed = 6f;
     private Vector2 moveInput;
-    private float moveDir;
+    public float moveDir;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

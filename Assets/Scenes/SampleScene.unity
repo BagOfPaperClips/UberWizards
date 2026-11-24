@@ -284,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   package: {fileID: 574762667}
   player1: {fileID: 591820604}
-  player2: {fileID: 0}
+  player2: {fileID: 591820604}
   cam: {fileID: 0}
   offscreenMargin: 0.2
   deathDelay: 0.2
@@ -2711,7 +2711,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591820599}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a89761d097de6274da928572c62e05e1, type: 3}
   m_Name: 
@@ -2829,7 +2829,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591820599}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbaa7a86bb4e34844b5076ea87d49dd7, type: 3}
   m_Name: 

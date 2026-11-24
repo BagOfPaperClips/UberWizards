@@ -52,6 +52,7 @@ public class ReadyUp : MonoBehaviour
                 readypose1.SetActive(false);
                 toggle1 = false;
                 readyup1.text = "ready Up";
+                
             }
         }
     }

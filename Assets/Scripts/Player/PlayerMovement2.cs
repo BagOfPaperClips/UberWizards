@@ -55,6 +55,8 @@ public class PlayerMovement2 : MonoBehaviour
 
         if (Input.GetKey(leftKey) || Aurdino.newYaw < -4) moveInput -= 1f;
         if (Input.GetKey(rightKey) || Aurdino.newYaw > 4) moveInput += 1f;
+        if (Aurdino.newYaw < -4) moveInput -= 1f;
+        if (Aurdino.newYaw > 4) moveInput += 1f;
 
         if (Input.GetKeyDown(jumpKey))
             jumpPressed = true;

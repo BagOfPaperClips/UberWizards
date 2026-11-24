@@ -267,7 +267,7 @@ MonoBehaviour:
   speed: 10
   lifetime: 2
   flightTime: 0.7
-  castSound: {fileID: 0}
-  hitSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: f29a531191e3184449543ca19b46f6f2, type: 3}
+  hitSound: {fileID: 8300000, guid: d9540ec18df81d64caef967853a09181, type: 3}
   volume: 1
   landNearCaster: 1

@@ -13,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 12f;
     public LayerMask groundLayer;
     public int facing = 1;   // 1 = right, -1 = left
+    public enum InputMode { Keyboard, Arduino }
+
+    [Header("Who is this")]
+    public int playerNumber = 1;                    // 1 or 2
+    public InputMode inputMode = InputMode.Keyboard;
 
     Rigidbody2D rb;
     CapsuleCollider2D col;
@@ -41,6 +46,23 @@ public class PlayerMovement : MonoBehaviour
         if (sr != null) originalColor = sr.color;
     }
 
+    void ReadInput()
+    {
+        if (inputMode == InputMode.Keyboard)
+        {
+            moveInput = 0f;
+            if (Input.GetKey(leftKey)) moveInput -= 1f;
+            if (Input.GetKey(rightKey)) moveInput += 1f;
+            if (Input.GetKeyDown(jumpKey)) jumpPressed = true;
+        }
+        else if (inputMode == InputMode.Arduino)
+        {
+            // Arduino
+            if (Aurdino.newYaw < -4) moveInput -= 1f;
+            if (Aurdino.newYaw > 4) moveInput += 1f;
+        }
+    }
+
     void Update()
     {
         if (boostMultiplier != 1f && Time.time >= boostEndTime)
@@ -53,14 +75,19 @@ public class PlayerMovement : MonoBehaviour
         }
         moveInput = 0f;
 
-        if (Input.GetKey(leftKey)) moveInput -= 1f;
-        if (Input.GetKey(rightKey)) moveInput += 1f;
-        //if (Aurdino.newYaw < -4) moveInput -= 1f;
-        //if (Aurdino.newYaw > 4) moveInput += 1f;
-
-
-        if (Input.GetKeyDown(jumpKey))
-            jumpPressed = true;
+        if (inputMode == InputMode.Keyboard)
+        {
+            moveInput = 0f;
+            if (Input.GetKey(leftKey)) moveInput -= 1f;
+            if (Input.GetKey(rightKey)) moveInput += 1f;
+            if (Input.GetKeyDown(jumpKey)) jumpPressed = true;
+        }
+        else if (inputMode == InputMode.Arduino)
+        {
+            // Arduino
+            if (Aurdino.newYaw < -4) moveInput -= 1f;
+            if (Aurdino.newYaw > 4) moveInput += 1f;
+        }
 
         if (moveInput != 0f)
             facing = moveInput > 0f ? 1 : -1;

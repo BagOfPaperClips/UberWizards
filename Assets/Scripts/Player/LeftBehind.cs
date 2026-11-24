@@ -28,9 +28,11 @@ public class LeftBehind : MonoBehaviour
         if (respawning) return;
 
         PlayerMovement holder = package != null ? package.holder : null;
+
         if (holder == null) { offscreenTimer = 0f; return; }   // nobody has it: no rule
 
         PlayerMovement other = holder == player1 ? player2 : player1;
+
 
         float half = cam.orthographicSize * cam.aspect;
         float dx = other.transform.position.x - cam.transform.position.x;

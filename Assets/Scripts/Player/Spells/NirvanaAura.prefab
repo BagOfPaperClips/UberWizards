@@ -102,5 +102,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMultiplier: 1.5
   duration: 3
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: 9c592a2095144e24b9bf2f0f5542ca99, type: 3}
   volume: 1

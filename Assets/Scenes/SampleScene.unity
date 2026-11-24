@@ -284,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   package: {fileID: 574762667}
   player1: {fileID: 591820604}
-  player2: {fileID: 591820604}
+  player2: {fileID: 648161308}
   cam: {fileID: 0}
   offscreenMargin: 0.2
   deathDelay: 0.2
@@ -2725,6 +2725,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   facing: 1
+  playerNumber: 1
+  inputMode: 0
   objectiveDirection: 1
   carrySpeedMultiplier: 0.75
 --- !u!114 &591820605
@@ -2934,9 +2936,9 @@ GameObject:
   - component: {fileID: 648161303}
   - component: {fileID: 648161302}
   - component: {fileID: 648161306}
-  - component: {fileID: 648161308}
   - component: {fileID: 648161305}
   - component: {fileID: 648161307}
+  - component: {fileID: 648161308}
   m_Layer: 7
   m_Name: Player2
   m_TagString: Untagged
@@ -3145,7 +3147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 648161299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae6a7fa9370d4d745b5bd8694179cfc5, type: 3}
+  m_Script: {fileID: 11500000, guid: a89761d097de6274da928572c62e05e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftKey: 276
@@ -3156,8 +3158,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  facing: 1
-  objectiveDirection: 1
+  facing: -1
+  playerNumber: 2
+  inputMode: 0
+  objectiveDirection: -1
   carrySpeedMultiplier: 0.75
 --- !u!1 &657573465
 GameObject:

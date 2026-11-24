@@ -2212,6 +2212,16 @@ MonoBehaviour:
   portName: COM4
   baudRate: 19200
   latestMessage: 
+  roll: 0
+  pitch: 0
+  yaw: 0
+  Xvalues: 0
+  Yvalues: 0
+  NEWXvalues: 0
+  NEWYvalues: 0
+  yawSet: 0
+  xSet: 0
+  ySet: 0
 --- !u!1 &533630239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,6 +2599,7 @@ GameObject:
   - component: {fileID: 591820604}
   - component: {fileID: 591820605}
   - component: {fileID: 591820607}
+  - component: {fileID: 591820608}
   m_Layer: 6
   m_Name: Player1
   m_TagString: Untagged
@@ -2700,7 +2711,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591820599}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a89761d097de6274da928572c62e05e1, type: 3}
   m_Name: 
@@ -2811,6 +2822,21 @@ MonoBehaviour:
   w1: {fileID: 736915158}
   w2: {fileID: 1359058045}
   winScreen: {fileID: 242995848}
+--- !u!114 &591820608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591820599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbaa7a86bb4e34844b5076ea87d49dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wiz: {fileID: 591820599}
+  rb: {fileID: 591820601}
+  moveSpeed: 6
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

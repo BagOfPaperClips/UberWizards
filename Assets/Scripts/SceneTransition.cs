@@ -15,6 +15,7 @@ public class SceneTransition : MonoBehaviour
     }
     public void StartGame()
     {
+
         SceneManager.LoadScene("SampleScene");
     }
     public void QuitGame()

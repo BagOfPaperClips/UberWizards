@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 7dac159e1df8fb446b80562a86c88612
+  - enabled: 1
+    path: Assets/Scenes/ReadyUpScreen.unity
+    guid: 264de1e409830be408eee0ab0e85f074
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

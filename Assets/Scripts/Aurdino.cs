@@ -90,10 +90,13 @@ public class Aurdino : MonoBehaviour
             NEWXvalues = xSet - Xvalues;
             NEWYvalues = ySet - Yvalues;
             newYaw = yawSet - yaw;
+            Debug.Log("NewYaw: "+ newYaw);
+            Debug.Log("zeroing value: " + yawSet);
+            Debug.Log("RAWYaw: " + yaw);
             //Debug.Log("Yaw: " + newYaw);
             //Debug.Log("XValues: " + NEWXvalues + "   YValues: " + NEWYvalues);
 
-            if(newYaw < -4)
+            if (newYaw < -4)
             {
                 //Debug.Log("move LEFT");
             }

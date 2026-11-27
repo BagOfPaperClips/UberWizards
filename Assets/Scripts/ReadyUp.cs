@@ -19,6 +19,8 @@ public class ReadyUp : MonoBehaviour
     [SerializeField] TextMeshProUGUI readyup1;
     [SerializeField] TextMeshProUGUI readyup2;
 
+    [SerializeField] GameObject wizard1Body;
+
     public KeyCode ready1 = KeyCode.W;
     public KeyCode ready2 = KeyCode.UpArrow;
 
@@ -28,6 +30,7 @@ public class ReadyUp : MonoBehaviour
     private void Start()
     {
         loadingScreen.SetActive(true);
+        wizard1Body.SetActive(false);
     }
     private void Update()
     {
@@ -44,6 +47,7 @@ public class ReadyUp : MonoBehaviour
                 if (toggle1 == true && player2 == true || player1 == true && player2 == true)
                 {
                     //GO INTO GAME
+                    wizard1Body.SetActive(true);
                     loadingScreen.SetActive(false);
                 }
             }/*
@@ -84,7 +88,9 @@ public class ReadyUp : MonoBehaviour
             if (player1 == true && player2 == true)
             {
                 //GO INTO GAME
+                wizard1Body.SetActive(true);
                 loadingScreen.SetActive(false);
+                
             }
         }
     }
@@ -107,8 +113,11 @@ public class ReadyUp : MonoBehaviour
             StartCoroutine(ReadyUpBuffer());
             if (player1 == true && player2 == true || toggle1 == true && player2 == true)
             {
+
                 //GO INTO GAME
+                wizard1Body.SetActive(true);
                 loadingScreen.SetActive(false);
+                
             }
         }
     }
@@ -127,6 +136,7 @@ public class ReadyUp : MonoBehaviour
             if (player1 == true && player2 == true)
             {
                 //GO INTO GAME
+                wizard1Body.SetActive(true);
                 loadingScreen.SetActive(false);
             }
         }

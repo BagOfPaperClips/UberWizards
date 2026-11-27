@@ -5799,6 +5799,7 @@ MonoBehaviour:
   readypose2: {fileID: 2062314283}
   readyup1: {fileID: 118606263}
   readyup2: {fileID: 1789402835}
+  wizard1Body: {fileID: 591820599}
   ready1: 119
   ready2: 273
   loadingScreen: {fileID: 231306354}

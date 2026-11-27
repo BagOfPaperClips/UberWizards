@@ -2726,7 +2726,7 @@ MonoBehaviour:
     m_Bits: 8
   facing: 1
   playerNumber: 1
-  inputMode: 0
+  inputMode: 1
   objectiveDirection: 1
   carrySpeedMultiplier: 0.75
 --- !u!114 &591820605

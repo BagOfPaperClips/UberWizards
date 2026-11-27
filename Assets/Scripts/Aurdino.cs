@@ -33,7 +33,7 @@ public class Aurdino : MonoBehaviour
     void Start()
     {
         serialPort = new SerialPort(portName, baudRate);
-        serialPort.ReadTimeout = 200; // Prevents Unity from freezing if no data arrives
+        serialPort.ReadTimeout = 50; // Prevents Unity from freezing if no data arrives
 
         try
         {
@@ -57,8 +57,8 @@ public class Aurdino : MonoBehaviour
                 latestMessage = serialPort.ReadLine();
                 //Debug.Log("Received: " + latestMessage);
 
-                string[] sections = latestMessage.Split(',');
-                //if (sections.Length != 7) return;
+                string[] sections = latestMessage.Trim().Split(",");
+                if (sections.Length != 7) return;
 
                 roll = float.Parse(sections[0]);
                 pitch = float.Parse(sections[1]);

@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             // Arduino
             if (Aurdino.newYaw < -4) moveInput -= 1f;
             if (Aurdino.newYaw > 4) moveInput += 1f;
+            if(Aurdino.button1 == 1) jumpPressed = true;
         }
     }
 
@@ -87,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
             // Arduino
             if (Aurdino.newYaw < -4) moveInput -= 1f;
             if (Aurdino.newYaw > 4) moveInput += 1f;
+            if (Aurdino.button1 == 1) jumpPressed = true;
         }
 
         if (moveInput != 0f)
